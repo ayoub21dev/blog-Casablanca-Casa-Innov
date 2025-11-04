@@ -108,3 +108,35 @@ Ayoub --> UC_ManageAll
 UC_Filter ..> UC_Browse : <<extends>>
 UC_Read ..> UC_Browse : <<extends>>
 @enduml
+
+### 🗂️ Site Map — Blog "Casa Innov'"
+
+#### 🌐 Public Area
+
+| Page | Description |
+|---|---|
+| **Home** | Landing page with hero banner, featured posts, and the latest posts from the community. |
+| **Posts / Blog** | Grid display of all posts (thumbnail, title, author name, category tags). |
+| **Post Details** | Individual post page: full content, author info, tags, and comment section. |
+| **Tag Page** | Posts filtered by a specific tag (e.g., all posts tagged with `#Tech`). |
+| **Author Profile** | Page showcasing an author's bio, social links, and a list of all their published posts. |
+| **Submit Post** | A simple form for registered contributors to write and submit their post for review. |
+| **Login / Register** | Standard authentication pages. |
+
+#### 🔐 Admin Area
+
+| Page | Description |
+|---|---|
+| **Admin Dashboard**| Overview: stats, list of pending submissions, recently published posts. |
+| **Posts List** | Table view of all posts (title, author, status, actions). |
+| **Review Post** | Page to review a submitted post and either Approve or Reject it. |
+
+---
+
+### 🛠️ Key Features to Highlight in Design
+
+-   ✅ CRUD operations for posts (in the Admin dashboard).
+-   ✅ Clean post display with images and prominent tags for filtering.
+-   ✅ Post page with clear author attribution and a comment section.
+-   ✅ Fully responsive design.
+-   ✅ Modern, professional, tech-focused aesthetic with the specified color palette.
