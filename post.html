@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts - Casa Innov'</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-blue': '#0A2540',
+                        'electric-cyan': '#00C4FF',
+                        'dark-grey': '#333333'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="font-inter bg-white">
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-8 h-8 bg-gradient-to-r from-deep-blue to-electric-cyan rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">CI</span>
+                        </div>
+                        <span class="ml-3 text-xl font-bold text-deep-blue">Casa Innov'</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-600 hover:text-deep-blue transition-colors">Home</a>
+                        <a href="posts.html" class="text-deep-blue font-medium border-b-2 border-electric-cyan pb-1">Posts</a>
+                        <a href="#" class="text-gray-600 hover:text-deep-blue transition-colors">Tags</a>
+                        <a href="#" class="text-gray-600 hover:text-deep-blue transition-colors">Submit a Post</a>
+                    </div>
+                </div>
+
+                <!-- Search Bar and Actions -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" placeholder="Search posts..." class="w-64 pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-electric-cyan focus:border-transparent">
+                        <i data-lucide="search" class="absolute left-3 top-2.5 h-5 w-5 text-gray-400"></i>
+                    </div>
+                    <button class="px-4 py-2 text-deep-blue font-medium hover:bg-gray-50 rounded-lg transition-colors">Login</button>
+                    <button class="px-4 py-2 bg-electric-cyan text-white font-medium rounded-lg hover:bg-blue-500 transition-colors">Register</button>
+                    <button id="darkModeToggle" class="p-2 text-gray-600 hover:text-deep-blue transition-colors">
+                        <i data-lucide="moon" class="h-5 w-5"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="text-gray-600 hover:text-deep-blue">
+                        <i data-lucide="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="bg-gradient-to-r from-deep-blue to-blue-800 text-white py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">All Posts</h1>
+                    <p class="text-xl text-blue-100 max-w-3xl mx-auto">
+                        Explore insights, stories, and ideas from Casablanca's innovation community.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filters and Search -->
+        <section class="py-8 bg-white border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                    <!-- Search and Filters -->
+                    <div class="flex flex-col sm:flex-row gap-4 flex-1">
+                        <div class="relative flex-1 max-w-md">
+                            <input type="text" placeholder="Search posts..." class="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-electric-cyan focus:border-transparent">
+                            <i data-lucide="search" class="absolute left-3 top-2.5 h-5 w-5 text-gray-400"></i>
+                        </div>
+                        <div class="flex gap-2">
+                            <select class="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-electric-cyan focus:border-transparent">
+                                <option>All Categories</option>
+                                <option>Innovation</option>
+                                <option>Business</option>
+                                <option>Technology</option>
+                                <option>Entrepreneurship</option>
+                            </select>
+                            <select class="px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-electric-cyan focus:border-transparent">
+                                <option>Latest</option>
+                                <option>Most Popular</option>
+                                <option>Most Liked</option>
+                                <option>Most Commented</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- View Toggle -->
+                    <div class="flex items-center gap-2">
+                        <span class="text-gray-600 text-sm">View:</span>
+                        <div class="flex border border-gray-200 rounded-lg">
+                            <button class="p-2 bg-electric-cyan text-white">
+                                <i data-lucide="grid-3x3" class="h-4 w-4"></i>
+                            </button>
+                            <button class="p-2 text-gray-400 hover:text-gray-600">
+                                <i data-lucide="list" class="h-4 w-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Posts Grid -->
+        <section class="py-12 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Post 1 -->
+                    <article class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+                        <div class="relative overflow-hidden">
+                            <img src="public/images/blog_featured_1_3.jpg" alt="Fintech Innovation" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-electric-cyan/90 text-white text-sm font-medium rounded-full">Fintech</span>
+                            </div>
+                            <button class="absolute top-4 right-4 p-2 bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors">
+                                <i data-lucide="bookmark" class="h-4 w-4 text-gray-600"></i>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-gray-500 text-sm">5 min read</span>
+                                <span class="text-gray-300">•</span>
+                                <span class="text-gray-500 text-sm">Ahmed Marrakech</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-deep-blue mb-3 leading-tight hover:text-electric-cyan transition-colors cursor-pointer">
+                                The Future of Fintech in Morocco: Opportunities and Challenges
+                            </h3>
+                            <p class="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+                                Exploring how digital payment solutions are reshaping Morocco's financial landscape and what entrepreneurs need to know about regulatory changes.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center text-gray-500">
+                                        <i data-lucide="heart" class="h-4 w-4 mr-1"></i>
+                                        <span class="text-sm">24</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-500">
+                                        <i data-lucide="message-circle" class="h-4 w-4 mr-1"></i>
+                                        <span class="text-sm">8</span>
+                                    </div>
+                                </div>
+                                <span class="text-gray-400 text-sm">2 days ago</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 2 -->
+                    <article class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+                        <div class="relative overflow-hidden">
+                            <img src="public/images/blog_featured_2_0.jpeg" alt="Business Innovation" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-blue-600/90 text-white text-sm font-medium rounded-full">Business</span>
+                            </div>
+                            <button class="absolute top-4 right-4 p-2 bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors">
+                                <i data-lucide="bookmark" class="h-4 w-4 text-gray-600"></i>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-gray-500 text-sm">7 min read</span>
+                                <span class="text-gray-300">•</span>
+                                <span class="text-gray-500 text-sm">Fatima Safi</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-deep-blue mb-3 leading-tight hover:text-electric-cyan transition-colors cursor-pointer">
+                                Building Sustainable Business Models in North Africa
+                            </h3>
+                            <p class="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+                                A comprehensive guide to creating resilient business strategies that thrive in the Moroccan market context and global competition.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center text-gray-500">
+                                        <i data-lucide="heart" class="h-4 w-4 mr-1"></i>
+                                        <span class="text-sm">31</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-500">
+                                        <i data-lucide="message-circle" class="h-4 w-4 mr-1"></i>
+                                        <span class="text-sm">12</span>
+                                    </div>
+                                </div>
+                                <span class="text-gray-400 text-sm">1 week ago</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 3 -->
+                    <article class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+                        <div class="relative overflow-hidden">
+                            <img src="public/images/blog_featured_3_0.jpg" alt="Remote Work" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-green-600/90 text-white text-sm font-medium rounded-full">Technology</span>
+                            </div>
+                            <button class="absolute top-4 right-4 p-2 bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors">
+                                <i data-lucide="bookmark" class="h-4 w-4 text-gray-600"></i>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-gray-500 text-sm">4 min read</span>
+                                <span class="text-gray-300">•</span>
+                                <span class="text-gray-500 text-sm">Omar Kettani</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-deep-blue mb-3 leading-tight hover:text-electric-cyan transition-colors cursor-pointer">
+                                Remote Work Revolution: How Moroccan Companies Are Adapting
+                            </h3>
+                            <p class="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+                                Insights into the digital transformation taking place across Morocco's corporate landscape and remote work best practices.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center text-gray-500">
+                                        <i data-lucide="heart" class="h-4 w-4 mr-1"></i>
+                                        <span class="text-sm">19</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-500">
+                                        <i data-lucide="message-circle" class="h-4 w-4 mr-1"></i>
+                                        <span class="text-sm">6</span>
+                                    </div>
+                                </div>
+                                <span class="text-gray-400 text-sm">3 days ago</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 4 -->
+                    <article class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+                        <div class="relative overflow-hidden">
+                            <img src="public/images/blog_featured_1_0.jpg" alt="AI Innovation" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-purple-600/90 text-white text-sm font-medium rounded-full">AI</span>
+                            </div>
+                            <button class="absolute top-4 right-4 p-2 bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors">
+                                <i data-lucide="bookmark" class="h-4 w-4 text-gray-600"></i>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-gray-500 text-sm">6 min read</span>
+                                <span class="text-gray-300">•</span>
+                                <span class="text-gray-500 text-sm">Youssef Idrissi</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-deep-blue mb-3 leading-tight hover:text-electric-cyan transition-colors cursor-pointer">
+                                AI and Machine Learning: The Next Frontier for Moroccan Startups
+                            </h3>
+                            <p class="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+                                Understanding how artificial intelligence is creating new opportunities for innovation in Morocco's growing tech ecosystem.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center text-gray-500">
+                                        <i data-lucide="heart" class="h-4 w-4 mr-1"></i>
+                                        <span class="text-sm">45</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-500">
+                                        <i data-lucide="message-circle" class="h-4 w-4 mr-1"></i>
+                                        <span class="text-sm">15</span>
+                                    </div>
+                                </div>
+                                <span class="text-gray-400 text-sm">5 days ago</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 5 -->
+                    <article class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+                        <div class="relative overflow-hidden">
+                            <img src="public/images/blog_featured_2_5.png" alt="E-commerce" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-orange-600/90 text-white text-sm font-medium rounded-full">E-commerce</span>
+                            </div>
+                            <button class="absolute top-4 right-4 p-2 bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors">
+                                <i data-lucide="bookmark" class="h-4 w-4 text-gray-600"></i>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-gray-500 text-sm">8 min read</span>
+                                <span class="text-gray-300">•</span>
+                                <span class="text-gray-500 text-sm">Leila Benali</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-deep-blue mb-3 leading-tight hover:text-electric-cyan transition-colors cursor-pointer">
+                                E-commerce Growth in Morocco: Digital Commerce Trends 2025
+                            </h3>
+                            <p class="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+                                An in-depth analysis of Morocco's e-commerce market growth, consumer behavior, and opportunities for online businesses.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center text-gray-500">
+                                        <i data-lucide="heart" class="h-4 w-4 mr-1"></i>
+                                        <span class="text-sm">27</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-500">
+                                        <i data-lucide="message-circle" class="h-4 w-4 mr-1"></i>
+                                        <span class="text-sm">9</span>
+                                    </div>
+                                </div>
+                                <span class="text-gray-400 text-sm">1 week ago</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Post 6 -->
+                    <article class="bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
+                        <div class="relative overflow-hidden">
+                            <img src="public/images/blog_featured_3_2.jpg" alt="Sustainability" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute top-4 left-4">
+                                <span class="px-3 py-1 bg-green-600/90 text-white text-sm font-medium rounded-full">Sustainability</span>
+                            </div>
+                            <button class="absolute top-4 right-4 p-2 bg-white/90 rounded-full shadow-lg hover:bg-white transition-colors">
+                                <i data-lucide="bookmark" class="h-4 w-4 text-gray-600"></i>
+                            </button>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-gray-500 text-sm">10 min read</span>
+                                <span class="text-gray-300">•</span>
+                                <span class="text-gray-500 text-sm">Nadia Tazi</span>
+                            </div>
+                            <h3 class="text-xl font-semibold text-deep-blue mb-3 leading-tight hover:text-electric-cyan transition-colors cursor-pointer">
+                                Green Tech Solutions: Building Sustainable Innovation in Morocco
+                            </h3>
+                            <p class="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+                                How Moroccan entrepreneurs are creating environmentally conscious technology solutions and sustainable business practices.
+                            </p>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="flex items-center text-gray-500">
+                                        <i data-lucide="heart" class="h-4 w-4 mr-1"></i>
+                                        <span class="text-sm">33</span>
+                                    </div>
+                                    <div class="flex items-center text-gray-500">
+                                        <i data-lucide="message-circle" class="h-4 w-4 mr-1"></i>
+                                        <span class="text-sm">11</span>
+                                    </div>
+                                </div>
+                                <span class="text-gray-400 text-sm">4 days ago</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Pagination -->
+                <div class="mt-16 flex items-center justify-center">
+                    <nav class="flex items-center space-x-2">
+                        <button class="px-3 py-2 text-gray-400 hover:text-deep-blue transition-colors">
+                            <i data-lucide="chevron-left" class="h-5 w-5"></i>
+                        </button>
+                        <button class="px-4 py-2 bg-electric-cyan text-white font-medium rounded-lg">1</button>
+                        <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">2</button>
+                        <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">3</button>
+                        <span class="px-2 text-gray-400">...</span>
+                        <button class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">8</button>
+                        <button class="px-3 py-2 text-gray-400 hover:text-deep-blue transition-colors">
+                            <i data-lucide="chevron-right" class="h-5 w-5"></i>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-deep-blue text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-8 h-8 bg-gradient-to-r from-electric-cyan to-blue-400 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">CI</span>
+                        </div>
+                        <span class="ml-3 text-xl font-bold">Casa Innov'</span>
+                    </div>
+                    <p class="text-blue-200 leading-relaxed">
+                        Casablanca's premier platform for sharing innovation, technology insights, and entrepreneurial experiences.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Community</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">Featured Authors</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">Upcoming Events</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">Success Stories</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">Mentorship Program</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">Writing Guidelines</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">Style Guide</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">Community Rules</a></li>
+                        <li><a href="#" class="text-blue-200 hover:text-white transition-colors">API Documentation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                            <i data-lucide="twitter" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                            <i data-lucide="linkedin" class="h-5 w-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-blue-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                            <i data-lucide="instagram" class="h-5 w-5"></i>
+                        </a>
+                    </div>
+                    <div class="mt-6">
+                        <p class="text-blue-200 text-sm">Stay updated with the latest posts and community news.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-blue-200 text-sm">
+                    © 2025 Casa Innov'. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-blue-200 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-blue-200 hover:text-white text-sm transition-colors">Terms of Service</a>
+                    <a href="#" class="text-blue-200 hover:text-white text-sm transition-colors">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        let isDark = false;
+        
+        darkModeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            document.documentElement.classList.toggle('dark', isDark);
+            darkModeToggle.innerHTML = isDark ? 
+                '<i data-lucide="sun" class="h-5 w-5"></i>' : 
+                '<i data-lucide="moon" class="h-5 w-5"></i>';
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
