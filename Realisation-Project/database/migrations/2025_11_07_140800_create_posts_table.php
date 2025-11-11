@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+    Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->string('title', 255);
+    $table->text('content');
+    $table->string('status')->default('draft');
+    $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); // FK to User
+    $table->timestamps(); // includes creation_date and updated_at
+});
     }
 
     /**
