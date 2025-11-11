@@ -1,4 +1,4 @@
-@startuml
+ @startuml
 left to right direction
 skinparam packageStyle rectangle
 
@@ -16,21 +16,18 @@ rectangle "Casa Innov' Blog" {
   usecase "Manage All Posts\n(Approve/Delete)" as UC7
 }
 
-' Reader use cases (simple lines, no arrows)
-Reader -- UC1
-Reader -- UC2
-Reader -- UC3
-Reader -- UC4
 
-' Contributor use cases
-Contributor -- UC5
-Contributor -- UC6
+Reader --> UC1
+Reader --> UC2
+Reader --> UC3
+Reader --> UC4
 
-' Admin use cases
-Admin -- UC7
+Contributor --> UC5
+Contributor --> UC6
 
-' Extend relationships (dotted arrows for dependencies)
-UC1 .> UC2 : <<extend>>
-UC4 .> UC2 : <<extend>>
+Admin --> UC7
+
+UC1 ..> UC2 : <<extend>>
+UC4 ..> UC2 : <<extend>>
 
 @enduml
