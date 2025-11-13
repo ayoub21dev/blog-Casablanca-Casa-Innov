@@ -1,36 +1,43 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-use App\Models\Comment;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Post;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Comment;
 
-class CommentController extends Controller
+class User extends Authenticatable
 {
-    public function store(Request $request, Post $post)
+    use HasFactory, Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    public function posts()
     {
-        $request->validate([
-            'content' => 'required|string|max:500',
-        ]);
-
-        $comment = $post->comments()->create([
-            'content' => $request->content,
-            'user_id' => Auth::id(), 
-        ]);
-
-        return back()->with('success', 'Comment added successfully!');
+        return $this->hasMany(Post::class);
     }
 
-    public function destroy(Comment $comment)
+    public function comments()
     {
-        
-        if (Auth::id() !== $comment->user_id && !Auth::user()->isAdmin()) {
-            abort(403);
-        }
+        return $this->hasMany(Comment::class);
+    }
 
-        $comment->delete();
-        return back()->with('success', 'Comment deleted successfully!');
+    /**
+     * Simple helper to check admin flag. Adjust according to your schema.
+     */
+    public function isAdmin()
+    {
+        return (bool) ($this->is_admin ?? false);
     }
 }
