@@ -2,35 +2,48 @@
 
 namespace Database\Seeders;
 
-use App\Models\Tag;
 use App\Models\Article;
+use App\Models\Category;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-       
-        $tags = Tag::factory(10)->create();
-
-        User::factory(5)
-            ->has(
-                Article::factory(10)
-                    ->hasAttached($tags->random(3))
-            )
-            ->create();
-
-        User::factory()->create([
+        $user = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => bcrypt('password'),
+        ]);
+
+        $categories = [
+            ['name' => 'Technology', 'slug' => 'technology'],
+            ['name' => 'Health', 'slug' => 'health'],
+            ['name' => 'Science', 'slug' => 'science'],
+        ];
+
+        foreach ($categories as $category) {
+            Category::create($category);
+        }
+
+        $cats = Category::all();
+
+        foreach ($cats as $cat) {
+            Article::factory(10)->create([
+                'user_id' => $user->id,
+                'category_id' => $cat->id,
+                'status' => 'published',
+            ]);
+        }
+        
+        // Create some draft articles
+        Article::factory(5)->create([
+            'user_id' => $user->id,
+            'category_id' => $cats->random()->id,
+            'status' => 'draft',
         ]);
     }
 }
