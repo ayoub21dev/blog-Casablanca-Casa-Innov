@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Casa Innov'</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'deep-blue': '#0A2540',
+                        'electric-cyan': '#00C4FF',
+                        'dark-grey': '#333333',
+                        'admin-dark': '#1a202c',
+                        'admin-darker': '#0f1419'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body class="font-inter bg-admin-darker text-white">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-admin-dark border-r border-gray-700 flex-shrink-0">
+            <!-- Logo -->
+            <div class="p-6 border-b border-gray-700">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-gradient-to-r from-electric-cyan to-blue-400 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">CI</span>
+                    </div>
+                    <span class="ml-3 text-xl font-bold text-white">Casa Innov'</span>
+                </div>
+                <p class="text-gray-400 text-sm mt-1">Admin Panel</p>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="p-4">
+                <ul class="space-y-2">
+                    <li>
+                        <a href="admin-dashboard.html" class="flex items-center px-4 py-3 bg-electric-cyan/10 text-electric-cyan rounded-lg font-medium">
+                            <i data-lucide="layout-dashboard" class="h-5 w-5 mr-3"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="admin-posts-list.html" class="flex items-center px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg transition-colors">
+                            <i data-lucide="file-text" class="h-5 w-5 mr-3"></i>
+                            Manage Posts
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg transition-colors">
+                            <i data-lucide="users" class="h-5 w-5 mr-3"></i>
+                            Manage Users
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-700 rounded-lg transition-colors">
+                            <i data-lucide="settings" class="h-5 w-5 mr-3"></i>
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- User Profile -->
+            <div class="absolute bottom-0 w-64 p-4 border-t border-gray-700">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-gradient-to-r from-deep-blue to-electric-cyan rounded-full flex items-center justify-center">
+                        <span class="text-white font-medium">AD</span>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm font-medium text-white">Admin User</p>
+                        <p class="text-xs text-gray-400"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="244540494d4a6447455745094d4a4a4b520a4945">[email&#160;protected]</a></p>
+                    </div>
+                    <button class="ml-auto p-1 text-gray-400 hover:text-white">
+                        <i data-lucide="log-out" class="h-4 w-4"></i>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-auto">
+            <!-- Header -->
+            <header class="bg-admin-dark border-b border-gray-700 p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="text-2xl font-bold text-white">Dashboard</h1>
+                        <p class="text-gray-400 mt-1">Welcome back! Here's what's happening today.</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button class="p-2 text-gray-400 hover:text-white transition-colors">
+                            <i data-lucide="bell" class="h-5 w-5"></i>
+                        </button>
+                        <button class="p-2 text-gray-400 hover:text-white transition-colors">
+                            <i data-lucide="search" class="h-5 w-5"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="p-6">
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-admin-dark rounded-xl p-6 border border-gray-700">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-400 text-sm font-medium">Total Posts</p>
+                                <p class="text-3xl font-bold text-white mt-1">1,247</p>
+                                <p class="text-green-400 text-sm mt-1">+12% from last month</p>
+                            </div>
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                                <i data-lucide="file-text" class="h-6 w-6 text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-admin-dark rounded-xl p-6 border border-gray-700">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-400 text-sm font-medium">Pending Submissions</p>
+                                <p class="text-3xl font-bold text-white mt-1">23</p>
+                                <p class="text-orange-400 text-sm mt-1">+3 new today</p>
+                            </div>
+                            <div class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                                <i data-lucide="clock" class="h-6 w-6 text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-admin-dark rounded-xl p-6 border border-gray-700">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-400 text-sm font-medium">Total Users</p>
+                                <p class="text-3xl font-bold text-white mt-1">2,156</p>
+                                <p class="text-green-400 text-sm mt-1">+47 this week</p>
+                            </div>
+                            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                                <i data-lucide="users" class="h-6 w-6 text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-admin-dark rounded-xl p-6 border border-gray-700">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-400 text-sm font-medium">Monthly Views</p>
+                                <p class="text-3xl font-bold text-white mt-1">89.2K</p>
+                                <p class="text-green-400 text-sm mt-1">+18% growth</p>
+                            </div>
+                            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center">
+                                <i data-lucide="trending-up" class="h-6 w-6 text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity & Pending Posts -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <!-- Recent Activity -->
+                    <div class="bg-admin-dark rounded-xl p-6 border border-gray-700">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-semibold text-white">Recent Activity</h2>
+                            <button class="text-electric-cyan hover:text-blue-400 text-sm font-medium">
+                                View All
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-green-500/10 rounded-full flex items-center justify-center">
+                                    <i data-lucide="user-plus" class="h-4 w-4 text-green-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-300 text-sm">New user registration</p>
+                                    <p class="text-gray-500 text-xs">Ahmed Benali joined the platform</p>
+                                    <p class="text-gray-500 text-xs">2 minutes ago</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-blue-500/10 rounded-full flex items-center justify-center">
+                                    <i data-lucide="file-text" class="h-4 w-4 text-blue-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-300 text-sm">New post submitted</p>
+                                    <p class="text-gray-500 text-xs">"AI in Moroccan Startups" by Fatima Safi</p>
+                                    <p class="text-gray-500 text-xs">15 minutes ago</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-orange-500/10 rounded-full flex items-center justify-center">
+                                    <i data-lucide="check-circle" class="h-4 w-4 text-orange-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-300 text-sm">Post approved</p>
+                                    <p class="text-gray-500 text-xs">"Fintech Trends 2025" by Omar Kettani</p>
+                                    <p class="text-gray-500 text-xs">1 hour ago</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-purple-500/10 rounded-full flex items-center justify-center">
+                                    <i data-lucide="message-circle" class="h-4 w-4 text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-gray-300 text-sm">New comment</p>
+                                    <p class="text-gray-500 text-xs">On "Remote Work Revolution"</p>
+                                    <p class="text-gray-500 text-xs">2 hours ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pending Posts -->
+                    <div class="bg-admin-dark rounded-xl p-6 border border-gray-700">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="text-xl font-semibold text-white">Pending Posts</h2>
+                            <a href="admin-posts-list.html" class="text-electric-cyan hover:text-blue-400 text-sm font-medium">
+                                View All
+                            </a>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div class="border border-gray-600 rounded-lg p-4">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <h3 class="text-white font-medium text-sm mb-1">AI in Moroccan Startups: Opportunities and Challenges</h3>
+                                        <p class="text-gray-400 text-xs mb-2">By Youssef Idrissi • 2 hours ago</p>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="px-2 py-1 bg-purple-500/10 text-purple-400 text-xs rounded-full">AI</span>
+                                            <span class="px-2 py-1 bg-blue-500/10 text-blue-400 text-xs rounded-full">Technology</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2 ml-4">
+                                        <button class="p-1 text-green-400 hover:text-green-300" title="Approve">
+                                            <i data-lucide="check" class="h-4 w-4"></i>
+                                        </button>
+                                        <button class="p-1 text-red-400 hover:text-red-300" title="Reject">
+                                            <i data-lucide="x" class="h-4 w-4"></i>
+                                        </button>
+                                        <button class="p-1 text-gray-400 hover:text-white" title="Edit">
+                                            <i data-lucide="edit" class="h-4 w-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border border-gray-600 rounded-lg p-4">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <h3 class="text-white font-medium text-sm mb-1">E-commerce Growth Strategies for 2025</h3>
+                                        <p class="text-gray-400 text-xs mb-2">By Leila Benali • 4 hours ago</p>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="px-2 py-1 bg-orange-500/10 text-orange-400 text-xs rounded-full">E-commerce</span>
+                                            <span class="px-2 py-1 bg-green-500/10 text-green-400 text-xs rounded-full">Business</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2 ml-4">
+                                        <button class="p-1 text-green-400 hover:text-green-300" title="Approve">
+                                            <i data-lucide="check" class="h-4 w-4"></i>
+                                        </button>
+                                        <button class="p-1 text-red-400 hover:text-red-300" title="Reject">
+                                            <i data-lucide="x" class="h-4 w-4"></i>
+                                        </button>
+                                        <button class="p-1 text-gray-400 hover:text-white" title="Edit">
+                                            <i data-lucide="edit" class="h-4 w-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="border border-gray-600 rounded-lg p-4">
+                                <div class="flex items-start justify-between">
+                                    <div class="flex-1">
+                                        <h3 class="text-white font-medium text-sm mb-1">Green Technology Solutions in Morocco</h3>
+                                        <p class="text-gray-400 text-xs mb-2">By Nadia Tazi • 1 day ago</p>
+                                        <div class="flex items-center space-x-2">
+                                            <span class="px-2 py-1 bg-green-500/10 text-green-400 text-xs rounded-full">Sustainability</span>
+                                            <span class="px-2 py-1 bg-cyan-500/10 text-cyan-400 text-xs rounded-full">Innovation</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex space-x-2 ml-4">
+                                        <button class="p-1 text-green-400 hover:text-green-300" title="Approve">
+                                            <i data-lucide="check" class="h-4 w-4"></i>
+                                        </button>
+                                        <button class="p-1 text-red-400 hover:text-red-300" title="Reject">
+                                            <i data-lucide="x" class="h-4 w-4"></i>
+                                        </button>
+                                        <button class="p-1 text-gray-400 hover:text-white" title="Edit">
+                                            <i data-lucide="edit" class="h-4 w-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                            <a href="admin-post-edit.html" class="w-full bg-electric-cyan text-white font-medium py-2 px-4 rounded-lg hover:bg-blue-500 transition-colors flex items-center justify-center">
+                                <i data-lucide="plus" class="h-4 w-4 mr-2"></i>
+                                Add New Post
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popular Posts Chart -->
+                <div class="mt-8 bg-admin-dark rounded-xl p-6 border border-gray-700">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-xl font-semibold text-white">Top Performing Posts</h2>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-1 bg-electric-cyan/10 text-electric-cyan text-sm rounded-lg">This Month</button>
+                            <button class="px-3 py-1 text-gray-400 text-sm rounded-lg hover:text-white">This Week</button>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center text-white text-sm font-medium">1</div>
+                                <div>
+                                    <p class="text-white text-sm font-medium">The Future of Fintech in Morocco</p>
+                                    <p class="text-gray-400 text-xs">by Ahmed Marrakech</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-white text-sm font-medium">2.4K</p>
+                                <p class="text-gray-400 text-xs">views</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center text-white text-sm font-medium">2</div>
+                                <div>
+                                    <p class="text-white text-sm font-medium">Building Sustainable Business Models</p>
+                                    <p class="text-gray-400 text-xs">by Fatima Safi</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-white text-sm font-medium">1.8K</p>
+                                <p class="text-gray-400 text-xs">views</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white text-sm font-medium">3</div>
+                                <div>
+                                    <p class="text-white text-sm font-medium">Remote Work Revolution</p>
+                                    <p class="text-gray-400 text-xs">by Omar Kettani</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-white text-sm font-medium">1.5K</p>
+                                <p class="text-gray-400 text-xs">views</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

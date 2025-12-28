@@ -1,0 +1,56 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+
+' ----------------- Classes ----------------- '
+class User {
+    + id_user : int {PK}
+    + username : string
+    + password : string
+    + email : string
+    + role : string
+    --
+    + login()
+    + logout()
+}
+
+class Post {
+    + id_post : int {PK}
+    + title : string
+    + content : text
+    + creation_date : Date
+    + status : string
+    --
+    + publish()
+    + update()
+    + delete()
+}
+
+class Comment {
+    + id_comment : int {PK}
+    + content : text
+    + comment_date : Date
+    --
+    + moderate()
+}
+
+class Tag {
+    + id_tag : int {PK}
+    + name : string
+}
+
+
+
+' User writes Post '
+User "1" --> "0..n" Post : writes
+
+' User adds Comment '
+User "1" --> "0..n" Comment : adds
+
+' Post contains Comments '
+Post "1" -- "0..n" Comment : contains
+
+' Post and Tag (N-N Association) '
+Post "0..n" -- "0..n" Tag
+
+@enduml

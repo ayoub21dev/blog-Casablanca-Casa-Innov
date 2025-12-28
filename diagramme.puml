@@ -1,0 +1,36 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Amine\n(Reader)" as Reader
+actor "Sara\n(Contributor)" as Contributor
+actor "Ayoub\n(Admin)" as Admin
+
+rectangle "Casa Innov' Blog" {
+  usecase "Read Post Details" as UC1
+  usecase "Browse Posts" as UC2
+  usecase "Add Comment" as UC3
+  usecase "Filter Posts\n(by tag)" as UC4
+  usecase "Manage Own Posts" as UC5
+  usecase "Submit Post" as UC6
+  usecase "Manage All Posts\n(Approve/Delete)" as UC7
+}
+
+' Reader use cases (simple lines, no arrows)
+Reader -- UC1
+Reader -- UC2
+Reader -- UC3
+Reader -- UC4
+
+' Contributor use cases
+Contributor -- UC5
+Contributor -- UC6
+
+' Admin use cases
+Admin -- UC7
+
+' Extend relationships (dotted arrows for dependencies)
+UC1 .> UC2 : <<extend>>
+UC4 .> UC2 : <<extend>>
+
+@enduml
